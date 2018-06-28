@@ -1,13 +1,13 @@
 package com.ericho.androidjsdemo
 
 import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Button
 import com.ericho.androidjsdemo.databinding.ActivityMainBinding
+import com.ericho.androidjsdemo.util.obtainViewModel
 import com.ericho.androidjsdemo.viewmodel.HomeViewModel
 
 
@@ -20,7 +20,7 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        val model = ViewModelProviders.of(this).get(HomeViewModel::class.java)
+        val model = obtainViewModel(HomeViewModel::class.java)
         binding.handler = model
         button = findViewById(R.id.btn1)
         button2 = findViewById(R.id.btn2)
