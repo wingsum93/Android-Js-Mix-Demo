@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 28
@@ -25,6 +26,9 @@ android {
 }
 
 dependencies {
+
+    def lifecycle_version = "1.1.1"
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:28.0.0-alpha3'
@@ -32,6 +36,12 @@ dependencies {
 
     implementation "org.jetbrains.anko:anko:$anko_version"
 
+    // alternatively - just ViewModel
+    implementation "android.arch.lifecycle:viewmodel:$lifecycle_version-ktx" // use -ktx for Kotlin
+    // alternatively - just LiveData
+    implementation "android.arch.lifecycle:livedata:$lifecycle_version"
+    kapt "android.arch.lifecycle:compiler:$lifecycle_version"
+    compile "android.arch.lifecycle:extensions:$lifecycle_version"
     //
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
